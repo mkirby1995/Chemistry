@@ -23,3 +23,12 @@
 ### Steel
 ### Concrete
 ### Polymers
+
+## Chemical Utilities
+### Equation Balencing
+### Stoichiometry
+### Periodic Table
+
+## Physical Utilities
+### Thermodynamics
+### Material Properties
