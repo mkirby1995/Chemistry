@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def balence(equation_str):
+def balance(equation_str):
     return_dict = {}
     for species in equation.replace('->', '+').split('+'):
         return_dict[species.strip()] = {}
@@ -77,19 +77,19 @@ Examples
 
 
 equation = 'C H_4 + H_2 O -> C O_2 + H_2'
-balence(equation)
+balance(equation)
 
 '1C H_4 + 2H_2 O -> 1C O_2 + 4H_2'
 
 
 equation = 'K I + K Cl O_3 + H Cl -> I_2 + H_2 O + K Cl'
-balence(equation)
+balance(equation)
 
 '6K I + 1K Cl O_3 + 6H Cl -> 3I_2 + 3H_2 O + 7K Cl'
 
 
 equation = 'Fe S_2 + H N O_3 -> Fe_2 S_3 O_12 + N O + H_2 S O_4'
-balence(equation)
+balance(equation)
 
 'No solution'
 """
