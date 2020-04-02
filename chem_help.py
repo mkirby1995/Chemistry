@@ -3,13 +3,13 @@ import numpy as np
 
 def balance(equation_str):
     return_dict = {}
-    for species in equation.replace('->', '+').split('+'):
+    # String Parsing
+    for species in equation_str.replace('->', '+').split('+'):
         return_dict[species.strip()] = {}
         for element in species.strip().split(' '):
             if len(element) < 3:
                 element += '_1'
             return_dict[species.strip()][element.split('_')[0]] = element.split('_')[1]
-
 
     # Lawrence R. Thorne: Simplified Matrix Null-Space Method
 
@@ -57,13 +57,13 @@ def balance(equation_str):
     #print('\n')
 
     # Step 8
-    species = [i.strip() for i in equation.replace('->', '+').split('+')]
+    species = [i.strip() for i in equation_str.replace('->', '+').split('+')]
     for i in range(len(species)):
         return_dict[species[i]] = coefs[i]
 
     return_eq = []
 
-    for side in equation.split('->'):
+    for side in equation_str.split('->'):
         new_side = []
         for species in side.split('+'):
             #print(return_dict[species.strip()], species.strip())
