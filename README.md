@@ -5,7 +5,7 @@
 
 [Mars InSitu Resource Utilization: A Review](https://www.sciencedirect.com/science/article/abs/pii/S0032063319301618#!)
 
-
+![Plant Diagram](plant_diagram.png)
 
 ## Open source Python package for In-Situ Resource Utilization research.
 
