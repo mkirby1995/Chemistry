@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+    <h2>Simulation Dashboard</h2>
+    <div class="controls">
+        <label for="sim-speed">Simulation Speed:</label>
+        <input type="number" id="sim-speed" value="1.0" step="0.1" min="0.1">
+        <label for="sim-duration">Simulation Duration (years):</label>
+        <input type="number" id="sim-duration" value="0.1" step="0.1" min="0.1">
+        <button id="run-simulation">Run Simulation</button>
+        <button id="pause-simulation">Pause</button>
+    </div>
+    <div class="visualization-controls">
+        <label for="visualization-select">Select Visualization:</label>
+        <select id="visualization-select">
+            <option value="tank_levels">Storage Tank Levels</option>
+            <option value="power_demand">Power Demand</option>
+            <option value="battery_level">Battery Level</option>
+            <option value="production_metrics">Production Metrics</option>
+            <option value="environmental_conditions">Environmental Conditions</option>
+            <option value="efficiency_metrics">Efficiency Metrics</option>
+            <option value="power_generation">Power Generation</option>
+        </select>
+    </div>
+    <div id="visualization"></div>
+    <div class="logs">
+        <h3>Simulation Logs</h3>
+        <pre id="logs-container"></pre>
+    </div>
+</div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
