@@ -11,6 +11,7 @@ source venv/bin/activate
 pip install --upgrade pip
 pip install wheel
 pip install -r requirements.txt
+pip install gunicorn
 
 # Deactivate virtual environment
 deactivate
