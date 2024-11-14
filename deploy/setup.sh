@@ -18,35 +18,35 @@ deactivate
 
 echo "Virtual environment set up successfully."
 
-# Copy service and Nginx configuration files
-sudo cp deploy/pyisru.service /etc/systemd/system/pyisru.service
-sudo cp deploy/pyisru_nginx.conf /etc/nginx/sites-available/pyisru
+# # Copy service and Nginx configuration files
+# sudo cp deploy/pyisru.service /etc/systemd/system/pyisru.service
+# sudo cp deploy/pyisru_nginx.conf /etc/nginx/sites-available/pyisru
 
-echo "Service and Nginx configuration files copied successfully."
+# echo "Service and Nginx configuration files copied successfully."
 
 # Enable the Nginx site
-sudo ln -s /etc/nginx/sites-available/pyisru /etc/nginx/sites-enabled
-sudo rm -f /etc/nginx/sites-enabled/default
+# sudo ln -s /etc/nginx/sites-available/pyisru /etc/nginx/sites-enabled
+# sudo rm -f /etc/nginx/sites-enabled/default
 
-echo "Nginx site enabled successfully."
+# echo "Nginx site enabled successfully."
 
-# Set permissions
-sudo chown -R ubuntu:www-data /home/ubuntu/pyisru
-sudo chmod -R 755 /home/ubuntu/pyisru
+# # Set permissions
+# sudo chown -R ubuntu:www-data /home/ubuntu/pyisru
+# sudo chmod -R 755 /home/ubuntu/pyisru
 
-echo "Permissions set successfully."
+# echo "Permissions set successfully."
 
-# Start and enable Gunicorn service
-sudo systemctl daemon-reload
-sudo systemctl start pyisru
-sudo systemctl enable pyisru
+# # Start and enable Gunicorn service
+# sudo systemctl daemon-reload
+# sudo systemctl start pyisru
+# sudo systemctl enable pyisru
 
-echo "Gunicorn service started and enabled successfully."
+# echo "Gunicorn service started and enabled successfully."
 
-# Test Nginx configuration and restart service
-sudo nginx -t
-sudo systemctl restart nginx
+# # Test Nginx configuration and restart service
+# sudo nginx -t
+# sudo systemctl restart nginx
 
-echo "Nginx configuration tested and service restarted successfully."
+# echo "Nginx configuration tested and service restarted successfully."
 
-echo "Deployment script executed successfully."
+# echo "Deployment script executed successfully."
