@@ -4,8 +4,6 @@ description: Explore our interactive simulation of a Sabatier reactor operating 
 image: fuel_production_plant.jpg
 ---
 
-# Simulating a Martian Sabatier Reactor
-
 Welcome to our interactive simulation of a Sabatier reactor designed for Martian conditions! This simulation models the production of methane (CH₄) and water (H₂O) from carbon dioxide (CO₂) and hydrogen (H₂) using the Sabatier reaction.
 
 ## About the Simulation
