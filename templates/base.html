@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title if title else 'My Portfolio' }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <header>
-        <h1><a href="{{ url_for('index') }}">Mathew Kirby</a></h1>
+        <h1><a href="{{ url_for('index') }}">Weapons Grade Bolognium</a></h1>
+        <p class="subtitle"><a href="{{ url_for('index') }}">by Mathew Kirby</a></p>
     </header>
     <main>
         {% block content %}{% endblock %}

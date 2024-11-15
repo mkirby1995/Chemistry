@@ -12,6 +12,7 @@ POSTS_DIRECTORY = "posts"
 
 def load_posts():
     posts = []
+    # Load local Markdown posts
     for md_file in Path(POSTS_DIRECTORY).glob("*.md"):
         with open(md_file, "r", encoding="utf-8") as file:
             content = file.read()
@@ -28,7 +29,21 @@ def load_posts():
                 }
             metadata["filename"] = md_file.stem
             posts.append(metadata)
+    
+    # Load Medium posts from YAML
+    medium_posts_file = Path(f"{POSTS_DIRECTORY}/medium_posts.yaml")
+    try:
+        with open(medium_posts_file, "r", encoding="utf-8") as file:
+            medium_posts = yaml.safe_load(file)
+            for post in medium_posts:
+                post["is_medium"] = True  # Add a flag for Medium posts
+                posts.append(post)
+    except Exception as e:
+        logging.error(f"Error loading Medium posts: {e}")
+
+    # Sort posts by title or add custom sorting
     return posts
+
 
 
 @app.route("/")
@@ -78,3 +93,4 @@ def run_simulation_route():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=False)
+    # app.run(debug=True)

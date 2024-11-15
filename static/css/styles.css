@@ -1,46 +1,89 @@
+/* General styles */
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
+/* Header */
 header {
     background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #eee;
     padding: 20px;
     text-align: left;
 }
 
-header h1 a {
+header h1 {
+    font-size: 2rem;
+    margin: 0;
     color: #333;
-    text-decoration: none;
 }
 
+header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* header h1 a:hover {
+    color: #007bff;
+} */
+
+header .subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+header .subtitle a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Main content */
 .post-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    padding: 40px;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .post-card {
-    background-color: #fff;
+    display: block; /* Makes the entire card clickable */
+    background: #fff;
+    border: 1px solid #eee;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; /* Removes underline on hover */
+    color: inherit; /* Ensures text color inherits from parent */
 }
 
 .post-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+}
+
+.post-image {
+    width: 100%; /* Matches the width of the container */
+    height: 200px; /* Fixed height for uniform aspect ratio */
+    overflow: hidden; /* Ensures no overflow if the image doesn't fit */
+    display: flex; /* Centers image within the container */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    background-color: #f4f4f4; /* Fallback background color */
 }
 
 .post-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    object-position: center; /* Center aligns the image within the container */
 }
 
 .post-info {
@@ -48,23 +91,26 @@ header h1 a {
 }
 
 .post-info h2 {
-    margin-top: 0;
+    font-size: 1.2rem;
+    margin: 0 0 10px;
     color: #333;
 }
 
 .post-info p {
+    font-size: 1rem;
     color: #666;
+    margin: 0;
 }
 
-.post-info a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #007BFF;
-    text-decoration: none;
-}
+/* Responsive design */
+@media (max-width: 600px) {
+    .post-grid {
+        padding: 10px;
+    }
 
-.post-info a:hover {
-    text-decoration: underline;
+    .post-info {
+        padding: 15px;
+    }
 }
 
 .post-content {
