@@ -1,3 +1,5 @@
+cdk destroy -f --profile personal
+cdk deploy --profile personal  
 
 # Welcome to your CDK Python project!
 
