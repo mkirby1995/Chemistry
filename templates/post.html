@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="post-content">
+    {% if image %}
+    <div class="post-image">
+        <img src="{{ url_for('static', filename='images/' + image) }}" alt="Image for {{ title }}">
+    </div>
+    {% endif %}
     <h1>{{ title }}</h1>
     {{ content | safe }}
 </div>

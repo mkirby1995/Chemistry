@@ -65,11 +65,15 @@ def post(filename):
             metadata = yaml.safe_load(front_matter)
             content = md_content.strip()
         else:
-            metadata = {"title": "Untitled"}
+            metadata = {"title": "Untitled", "image": ""}
+        
         html_content = markdown(content, extras=["fenced-code-blocks", "tables"])
 
     return render_template(
-        "post.html", content=html_content, title=metadata.get("title", "Untitled")
+        "post.html",
+        content=html_content,
+        title=metadata.get("title", "Untitled"),
+        image=metadata.get("image", "")
     )
 
 
@@ -92,5 +96,5 @@ def run_simulation_route():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=False)
-    # app.run(debug=True)
+    # app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(debug=True)
