@@ -2,6 +2,7 @@
 title: The Other, the Unknown, and Ourselves
 description: Reflections on Solaris
 image: solaris.jpg
+publish_date: "2024-11-19"
 ---
 
 How can we ever hope to understand the unknown? In Stanislaw Lem's novel, *Solaris*, this question takes center stage as humanity confronts something truly alien that defies all attempts at comprehension. Widely regarded as a science fiction classic, *Solaris* is a tale of mystery and exploration that probes our inner humanity, the future of science as an institution, and our uneasy relationship to the unknown.

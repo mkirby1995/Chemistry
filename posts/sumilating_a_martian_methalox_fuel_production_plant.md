@@ -2,6 +2,7 @@
 title: Simulating a Martian Methalox Fuel Production Plant
 description: Insights into In-Situ Resource Utilization (ISRU)
 image: fuel_production_plant.jpg
+publish_date: "2024-11-01"
 ---
 
 Welcome to an interactive exploration of the Sabatier reaction—an essential process for future Mars missions. This simulation is designed to provide a hands-on understanding of how methane (CH₄) and water (H₂O) are produced from carbon dioxide (CO₂) and hydrogen (H₂) under Martian conditions. It offers valuable insights into how in-situ resource utilization (ISRU) can support sustainable human presence on the Red Planet.

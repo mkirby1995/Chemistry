@@ -10,6 +10,13 @@ app = Flask(__name__)
 POSTS_DIRECTORY = "posts"
 
 
+from datetime import datetime
+from pathlib import Path
+import yaml
+import logging
+
+POSTS_DIRECTORY = "posts"
+
 def load_posts():
     posts = []
     # Load local Markdown posts
@@ -25,9 +32,15 @@ def load_posts():
                     "title": "Untitled",
                     "description": "",
                     "image": "",
+                    "publish_date": "1970-01-01",  # Default fallback date
                     "content": content,
                 }
             metadata["filename"] = md_file.stem
+
+            # Parse the publish_date as a datetime object for sorting
+            metadata["publish_date"] = datetime.strptime(
+                metadata.get("publish_date", "1970-01-01"), "%Y-%m-%d"
+            )
             posts.append(metadata)
     
     # Load Medium posts from YAML
@@ -37,13 +50,16 @@ def load_posts():
             medium_posts = yaml.safe_load(file)
             for post in medium_posts:
                 post["is_medium"] = True  # Add a flag for Medium posts
+                post["publish_date"] = datetime.strptime(
+                    post.get("publish_date", "1970-01-01"), "%Y-%m-%d"
+                )
                 posts.append(post)
     except Exception as e:
         logging.error(f"Error loading Medium posts: {e}")
 
-    # Sort posts by title or add custom sorting
+    # Sort posts by publish_date in descending order
+    posts.sort(key=lambda post: post["publish_date"], reverse=True)
     return posts
-
 
 
 @app.route("/")
@@ -73,7 +89,8 @@ def post(filename):
         "post.html",
         content=html_content,
         title=metadata.get("title", "Untitled"),
-        image=metadata.get("image", "")
+        description=metadata.get("description", ""),
+        image=metadata.get("image", ""),
     )
 
 
@@ -96,5 +113,5 @@ def run_simulation_route():
 
 
 if __name__ == "__main__":
-    # app.run(host='0.0.0.0', port=5000, debug=False)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
+    # app.run(debug=True)

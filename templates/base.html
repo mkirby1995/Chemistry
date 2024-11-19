@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Post{% endblock %}</title>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ url_for('static', filename='images/' + image) }}">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:site_name" content="My Flask Blog">
+
+    <!-- Twitter card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/' + image) }}">
+    <meta name="twitter:url" content="{{ request.url }}">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
