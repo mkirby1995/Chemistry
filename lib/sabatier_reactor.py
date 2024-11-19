@@ -4,7 +4,7 @@ import numpy as np
 from lib.reactor_settings import ReactorSettings
 from lib.containment_vessel import ContainmentVessel
 from lib.storage_tank import StorageTank
-from lib.power_system import PowerSystem
+from lib.power_system import PowerDistributionManagementSystem
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ class SabatierReactor:
     H2_tank: StorageTank
     CH4_tank: StorageTank
     H2O_tank: StorageTank
-    power_system: PowerSystem
+    power_system: PowerDistributionManagementSystem
     min_operational_efficiency: float = 0.1  # Minimum efficiency required to operate
 
     # Activation energy in kJ/mol (approximate for the Sabatier reaction)

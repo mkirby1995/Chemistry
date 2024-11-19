@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import logging
 from lib.reactor_settings import ReactorSettings
 from lib.storage_tank import StorageTank
-from lib.power_system import PowerSystem
+from lib.power_system import PowerDistributionManagementSystem
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class ElectrolysisReactor:
     H2O_tank: StorageTank
     H2_tank: StorageTank
     O2_tank: StorageTank
-    power_system: PowerSystem
+    power_system: PowerDistributionManagementSystem
     efficiency: float = 0.8  # Default efficiency of 80%
 
     def run_cycle(self, hour, total_power_available):

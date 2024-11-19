@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from .power_system import PowerSystem
+from .power_system import PowerDistributionManagementSystem
 
 
 @dataclass
@@ -14,7 +14,7 @@ class ContainmentVessel:
     pressurization_power_kw: float  # Max power of the pressurization system in kW
     internal_temp_c: float  # Current internal temperature in Celsius
     internal_pressure_pa: float  # Current internal pressure in Pascals
-    power_system: PowerSystem
+    power_system: PowerDistributionManagementSystem
 
     def adjust_temperature(self, external_temp_c, hour):
         # Mass of gas (assuming ideal gas)
