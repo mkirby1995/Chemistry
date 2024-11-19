@@ -68,43 +68,54 @@ class PyISRUFlaskAppDeploymentStack(Stack):
             key_name=instance_key_name,
             security_group=security_group,
             vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-        )                         
+        )   
+
+        certificate = acm.Certificate(
+            self,
+            "SiteCertificate",
+            domain_name="mathewkirby.com",
+            validation=acm.CertificateValidation.from_dns(hosted_zone),
+        )                      
 
         instance.user_data.add_commands(
             # Update and upgrade packages
             "sudo apt update -y",
             "sudo apt upgrade -y",
             "sudo apt install -y git nginx python3-pip python3-venv",
+            "sudo apt install -y certbot python3-certbot-nginx",
+
             # Clone the GitHub repository
             "cd /home/ubuntu",
             "git clone https://github.com/mkirby42/pyisru.git",
             "cd pyisru",
+
             # Run the setup script
             "sudo chmod +x deploy/setup.sh",
             "sudo ./deploy/setup.sh",
+
             # Copy the systemd service and Nginx configuration files
             "sudo chmod o+x /home/ubuntu",
             "sudo cp deploy/pyisru.service /etc/systemd/system/pyisru.service",
             "sudo cp deploy/pyisru_nginx.conf /etc/nginx/sites-available/pyisru",
             "sudo ln -s /etc/nginx/sites-available/pyisru /etc/nginx/sites-enabled",
             "sudo rm -f /etc/nginx/sites-enabled/default",
+
+            # Obtain SSL certificate
+            f"sudo certbot --nginx -d mathewkirby.com -m admin@mathewkirby.com --agree-tos --non-interactive",
+
             # Set permissions
             "sudo chown -R ubuntu:www-data /home/ubuntu/pyisru",
             "sudo chmod -R 755 /home/ubuntu/pyisru",
+
             # Start and enable Gunicorn service
             "sudo systemctl daemon-reload",
             "sudo systemctl start pyisru",
             "sudo systemctl enable pyisru",
+
             # Test Nginx configuration and restart service
             "sudo nginx -t",
             "sudo systemctl restart nginx",
         )
-
-        # certificate = acm.Certificate(
-        #     self, "SiteCertificate",
-        #     domain_name=domain_name,
-        #     validation=acm.CertificateValidation.from_dns(hosted_zone)
-        # )
 
         # Add A record in Route 53 to point to the EC2 instance
         route53.ARecord(
